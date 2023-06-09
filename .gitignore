@@ -1,0 +1,22 @@
+# .gitignore
+node_modules/
+npm-debug.log
+.DS_Store
+*.log
+.env
+
+# Archivos generados por el sistema operativo
+Thumbs.db
+.DS_Store?
+
+# Archivos generados por el IDE
+.vscode/
+.idea/
+*.swp
+
+# Archivos generados durante la ejecución
+dist/
+
+# Archivos generados durante la creación de un paquete
+*.tgz
+.package-lock.json

@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Chat Multilenguaje</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<!-- Asegúrate de que el CSS se esté cargando correctamente -->
+</head>
+
+<body>
+	<div id="userForm">
+		<label for="name">Nombre:</label>
+		<input id="name" type="text">
+		<label for="lang">Idioma:</label>
+		<select id="lang">
+			<option value="EN">Inglés</option>
+			<option value="ES">Español</option>
+			<!-- Añade las opciones de idioma según lo que soporte la API de DeepL -->
+		</select>
+		<button>Ingresar</button>
+	</div>
+	<div id="chat" style="display: none;">
+		<div id="messages"></div>
+		<form action="">
+			<input id="m" autocomplete="off" /><button>Enviar</button>
+		</form>
+	</div>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="script.js"></script> <!-- Asegúrate de que el JS se esté cargando correctamente -->
+</body>
+
+</html>
