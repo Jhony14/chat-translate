@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 	if (token) {
 		let user = { name, lang, token };
 		socket.emit('setUser', user);
+		console.log('User set, getting chat');
 		socket.emit('getChat');
 		document.getElementById('userForm').style.display = 'none';
 		document.getElementById('chat').style.display = 'block';
@@ -47,32 +48,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
 	function sendMessage(e) {
 		e.preventDefault();
 		var m = document.getElementById('m');
-		socket.emit('chat message', m.value);
+		socket.emit('chat message', { text: m.value, token: localStorage.getItem('token') });
 		m.value = '';
 	}
 
 	socket.on('chat message', function (msg) {
-		addMessage(msg, false);
+		addMessage(msg);
 	});
 
 	socket.on('chat history', function (history) {
+		console.log('Received chat history', history);
 		for (let msg of history) {
-			let isUserMsg = msg.startsWith(name + ': ');
-			addMessage(msg, isUserMsg);
+			addMessage({ text: msg.text, token: msg.token });
 		}
 	});
 
 	function addMessage(msg) {
 		var p = document.createElement('p');
 		p.textContent = msg.text;
-	
+
 		// Comprueba si el mensaje fue enviado por el usuario actual
 		if (msg.token === localStorage.getItem('token')) {
 			p.classList.add('send');
 		} else {
 			p.classList.add('received');
 		}
-		
+
 		document.getElementById('messages').appendChild(p);
 	}
 });
