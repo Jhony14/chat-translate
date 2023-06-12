@@ -4,29 +4,35 @@
 <head>
 	<title>Chat Multilenguaje</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<!-- Asegúrate de que el CSS se esté cargando correctamente -->
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
 </head>
 
 <body>
-	<div id="userForm">
-		<label for="name">Nombre:</label>
-		<input id="name" type="text">
-		<label for="lang">Idioma:</label>
-		<select id="lang">
-			<option value="EN">Inglés</option>
-			<option value="ES">Español</option>
-			<!-- Añade las opciones de idioma según lo que soporte la API de DeepL -->
-		</select>
-		<button>Ingresar</button>
-	</div>
-	<div id="chat" style="display: none;">
-		<div id="messages"></div>
-		<form action="">
-			<input id="m" autocomplete="off" /><button>Enviar</button>
-		</form>
+	<div id="container">
+		<div id="userForm">
+			<label for="name">Nombre:</label>
+			<input id="name" type="text">
+			<label for="lang">Idioma:</label>
+			<select id="lang">
+				<option value="EN">Inglés</option>
+				<option value="ES">Español</option>
+			</select>
+			<button>Ingresar</button>
+		</div>
+		<div id="chat" style="display: none;">
+			<div id="messages"></div>
+			<form action="">
+				<input id="m" autocomplete="off" /><button>Enviar</button>
+			</form>
+		</div>
 	</div>
 	<script src="/socket.io/socket.io.js"></script>
-	<script src="script.js"></script> <!-- Asegúrate de que el JS se esté cargando correctamente -->
+	<script src="script.js"></script> 
 </body>
 
 </html>
+
+
+htmlsa
