@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', (event) => {
 	var socket = io();
 
-	// Recupera los datos del usuario del LocalStorage
 	let token = localStorage.getItem('token');
 	let name = localStorage.getItem('name');
 	let lang = localStorage.getItem('lang');
@@ -9,7 +8,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 	if (token) {
 		let user = { name, lang, token };
 		socket.emit('setUser', user);
-		console.log('User set, getting chat');
 		socket.emit('getChat');
 		document.getElementById('userForm').style.display = 'none';
 		document.getElementById('chat').style.display = 'block';
@@ -57,7 +55,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 	});
 
 	socket.on('chat history', function (history) {
-		console.log('Received chat history', history);
 		for (let msg of history) {
 			addMessage({ text: msg.text, token: msg.token });
 		}
@@ -67,13 +64,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
 		var p = document.createElement('p');
 		p.textContent = msg.text;
 
-		// Comprueba si el mensaje fue enviado por el usuario actual
 		if (msg.token === localStorage.getItem('token')) {
 			p.classList.add('send');
 		} else {
 			p.classList.add('received');
 		}
 
-		document.getElementById('messages').appendChild(p);
+		var messages = document.getElementById('messages');
+		messages.appendChild(p);
+		messages.scrollTop = messages.scrollHeight;
 	}
 });
